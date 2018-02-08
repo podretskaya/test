@@ -17,10 +17,10 @@ public class TutByTests {
         driver.manage().window().maximize();
     }
 
-@Test(dataProvider = "credentials")
+@Test
     public static void loginTest(String login, String password){
-        String login = "IBA.Selenium.01@tut.by";
-        String password = "IOP123456";
+        String login = "Tradiscancia";
+        String password = "123456789";
         driver.get("https://www.tut.by/");
         WebElement loginIcon = driver.findElement(By.xpath("//i[@class='b-icon icon-auth']"));
         loginIcon.click();
