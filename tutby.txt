@@ -1,0 +1,40 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+import java.util.concurrent.TimeUnit;
+
+public class TutByTests {
+    public static WebDriver driver;
+
+    @BeforeMethod
+    public static void start(){
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
+    }
+
+@Test(dataProvider = "credentials")
+    public static void loginTest(String login, String password){
+        String login = "IBA.Selenium.01@tut.by";
+        String password = "IOP123456";
+        driver.get("https://www.tut.by/");
+        WebElement loginIcon = driver.findElement(By.xpath("//i[@class='b-icon icon-auth']"));
+        loginIcon.click();
+        WebElement loginInput = driver.findElement(By.xpath("//input[@name='login']"));
+        loginInput.sendKeys(login);
+        WebElement passwordInput = driver.findElement(By.xpath("//input[@name='password']"));
+        passwordInput.sendKeys(password);
+        WebElement loginButton = driver.findElement(By.xpath("//input[contains(@class, 'auth__enter')]"));
+        loginButton.click();
+
+       
+
+    }
+@AfterMethod()
+    public static void finish(){
+        driver.quit();
+    }
